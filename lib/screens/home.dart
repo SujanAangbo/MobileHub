@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_hub/constants.dart';
+import 'package:movie_hub/model/movie_list.dart';
 
 import '../model/movie.dart';
 import '../widgets/category_movie_slider.dart';
@@ -12,54 +14,70 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  FocusNode searchFocus = FocusNode();
+  TextEditingController searchBoxTextController = TextEditingController();
+
+  @override
+  void dispose() {
+    searchFocus.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text(
-      //     "Movie Hub",
-      //     style: kTitleText,
-      //   ),
-      // ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TrendingSliderWidget(
-                  movieList: Movie("", "", "").getMovies(),
-                ),
-                Divider(
-                  height: 10,
-                  thickness: 2,
-                  color: Colors.grey,
-                ),
-                MovieCategorySlider(
-                    category: "Top Rated Movie",
-                    movieList: Movie("", "", "").getMovies()),
-                Divider(
-                  height: 10,
-                  thickness: 2,
-                  color: Colors.grey,
-                ),
-                MovieCategorySlider(
-                    category: "Upcoming Movie",
-                    movieList: Movie("", "", "").getMovies()),
-                Divider(
-                  height: 10,
-                  thickness: 2,
-                  color: Colors.grey,
+    return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SearchBar(
+              focusNode: searchFocus,
+              padding: MaterialStateProperty.all(
+                  const EdgeInsets.symmetric(horizontal: 16.0)),
+              hintText: "Search Movies",
+              textStyle: MaterialStateProperty.all(kDescriptionText),
+              controller: searchBoxTextController,
+
+              trailing: const [
+                Icon(
+                  Icons.search,
+                  size: 30,
                 ),
               ],
             ),
-          ),
+            SizedBox(
+              height: 8.0,
+            ),
+            TrendingSliderWidget(
+              movieList: MoviesList().movies,
+            ),
+            Divider(
+              height: 10,
+              thickness: 2,
+              color: Colors.grey,
+            ),
+            MovieCategorySlider(
+                category: "Top Rated Movie",
+                movieList: MoviesList().movies),
+            Divider(
+              height: 10,
+              thickness: 2,
+              color: Colors.grey,
+            ),
+            MovieCategorySlider(
+                category: "Upcoming Movie",
+                movieList: MoviesList().movies),
+            Divider(
+              height: 10,
+              thickness: 2,
+              color: Colors.grey,
+            ),
+          ],
         ),
-      ),
-      // bottomNavigationBar: BottomNavigationBar(items: [
-      //
-      // ],),
-    );
+      );
+
   }
+
+
 }
