@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_hub/model/movie.dart';
-import 'package:movie_hub/model/movie_list.dart';
 
 class Favourite extends StatelessWidget {
   Favourite({Key? key}) : super(key: key);
 
-  List<Movie> list = MoviesList().movies;
+  // List<Movie> list = MoviesList().movies;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class Favourite extends StatelessWidget {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Image.network(list[item].movieUrl, fit: BoxFit.fill,),
+                  child: Image.network("https://th.bing.com/th/id/R.6af6fd9c37f0de4abb34ea0fd20acce3?rik=55mqMmrTutVR0Q&pid=ImgRaw&r=0", fit: BoxFit.fill,),
                 );
             },
           )

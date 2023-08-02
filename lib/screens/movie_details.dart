@@ -109,7 +109,7 @@ class _MovieDetailsState extends State<MovieDetails>
                 "Spider Man No Way Home",
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
-                style: kTitleText.copyWith(fontSize: 20),
+                style: Constants.kTitleText.copyWith(fontSize: 20),
               ),
             ),
           ],

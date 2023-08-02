@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_hub/constants.dart';
-import 'package:movie_hub/model/movie_list.dart';
+import 'package:movie_hub/network_service/api.dart';
 
 import '../model/movie.dart';
 import '../widgets/category_movie_slider.dart';
@@ -17,6 +17,15 @@ class _HomeState extends State<Home> {
 
   FocusNode searchFocus = FocusNode();
   TextEditingController searchBoxTextController = TextEditingController();
+
+  late Future<List<Movie>> movieList;
+
+  @override
+  void initState() {
+    movieList = Api().getTrendingMovies();
+    // print(movieList.);
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -36,7 +45,7 @@ class _HomeState extends State<Home> {
               padding: MaterialStateProperty.all(
                   const EdgeInsets.symmetric(horizontal: 16.0)),
               hintText: "Search Movies",
-              textStyle: MaterialStateProperty.all(kDescriptionText),
+              textStyle: MaterialStateProperty.all(Constants.kDescriptionText),
               controller: searchBoxTextController,
 
               trailing: const [
@@ -50,7 +59,7 @@ class _HomeState extends State<Home> {
               height: 8.0,
             ),
             TrendingSliderWidget(
-              movieList: MoviesList().movies,
+              movieList: movieList,
             ),
             Divider(
               height: 10,
@@ -59,7 +68,7 @@ class _HomeState extends State<Home> {
             ),
             MovieCategorySlider(
                 category: "Top Rated Movie",
-                movieList: MoviesList().movies),
+                movieList: []),
             Divider(
               height: 10,
               thickness: 2,
@@ -67,7 +76,7 @@ class _HomeState extends State<Home> {
             ),
             MovieCategorySlider(
                 category: "Upcoming Movie",
-                movieList: MoviesList().movies),
+                movieList: []),
             Divider(
               height: 10,
               thickness: 2,

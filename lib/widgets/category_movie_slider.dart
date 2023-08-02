@@ -26,7 +26,7 @@ class _MovieCategorySliderState extends State<MovieCategorySlider> {
         ),
         Text(
           widget.category,
-          style: kTitleText,
+          style: Constants.kTitleText,
         ),
         const SizedBox(
           height: 8,
@@ -47,7 +47,7 @@ class _MovieCategorySliderState extends State<MovieCategorySlider> {
                   color: Colors.blue,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Image.network(widget.movieList[item].movieUrl, fit: BoxFit.fill,),
+                child: Image.network("https://th.bing.com/th/id/R.6af6fd9c37f0de4abb34ea0fd20acce3?rik=55mqMmrTutVR0Q&pid=ImgRaw&r=0" , fit: BoxFit.fill,),
               );
             },
           ),
