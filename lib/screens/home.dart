@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_hub/constants.dart';
 import 'package:movie_hub/network_service/api.dart';
 
 import '../model/movie.dart';
 import '../widgets/category_movie_slider.dart';
+import '../widgets/divide_element.dart';
+import '../widgets/searchbar_widget.dart';
 import '../widgets/trending_slider_widget.dart';
 
 class Home extends StatefulWidget {
@@ -18,11 +19,15 @@ class _HomeState extends State<Home> {
   FocusNode searchFocus = FocusNode();
   TextEditingController searchBoxTextController = TextEditingController();
 
-  late Future<List<Movie>> movieList;
+  late Future<List<Movie>> trendingMovieList;
+  late Future<List<Movie>> topRatedMovieList;
+  late Future<List<Movie>> upcomingMovieList;
 
   @override
   void initState() {
-    movieList = Api().getTrendingMovies();
+    trendingMovieList = Api().getTrendingMovies();
+    topRatedMovieList = Api().getTopRatedMovies();
+    upcomingMovieList = Api().getUpcomingMovies();
     // print(movieList.);
     super.initState();
   }
@@ -40,53 +45,25 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SearchBar(
-              focusNode: searchFocus,
-              padding: MaterialStateProperty.all(
-                  const EdgeInsets.symmetric(horizontal: 16.0)),
-              hintText: "Search Movies",
-              textStyle: MaterialStateProperty.all(Constants.kDescriptionText),
-              controller: searchBoxTextController,
-
-              trailing: const [
-                Icon(
-                  Icons.search,
-                  size: 30,
-                ),
-              ],
-            ),
+            SearchBarWidget(searchFocus: searchFocus, searchBoxTextController: searchBoxTextController),
             SizedBox(
               height: 8.0,
             ),
             TrendingSliderWidget(
-              movieList: movieList,
+              movieList: trendingMovieList,
             ),
-            Divider(
-              height: 10,
-              thickness: 2,
-              color: Colors.grey,
-            ),
+            const DivideElement(),
             MovieCategorySlider(
                 category: "Top Rated Movie",
-                movieList: []),
-            Divider(
-              height: 10,
-              thickness: 2,
-              color: Colors.grey,
-            ),
+                movieList: topRatedMovieList),
+            const DivideElement(),
             MovieCategorySlider(
                 category: "Upcoming Movie",
-                movieList: []),
-            Divider(
-              height: 10,
-              thickness: 2,
-              color: Colors.grey,
-            ),
+                movieList: upcomingMovieList),
+            const DivideElement(),
           ],
         ),
       );
 
   }
-
-
 }

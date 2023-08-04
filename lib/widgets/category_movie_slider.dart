@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_hub/screens/movie_details.dart';
 
 import '../constants.dart';
 import '../model/movie.dart';
@@ -6,7 +7,7 @@ import '../model/movie.dart';
 
 class MovieCategorySlider extends StatefulWidget {
   String category;
-  List<Movie> movieList;
+  Future<List<Movie>> movieList;
 
   MovieCategorySlider(
       {super.key, required this.category, required this.movieList});
@@ -35,21 +36,47 @@ class _MovieCategorySliderState extends State<MovieCategorySlider> {
         SizedBox(
           height: 300,
           width: double.infinity,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: widget.movieList.length,
-            itemBuilder: (context, item) {
-              return Container(
-                margin: const EdgeInsets.all(8),
-                height: 250,
-                width: 180,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Image.network("https://th.bing.com/th/id/R.6af6fd9c37f0de4abb34ea0fd20acce3?rik=55mqMmrTutVR0Q&pid=ImgRaw&r=0" , fit: BoxFit.fill,),
+          child: FutureBuilder(
+            future: widget.movieList,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+              return const SizedBox(
+                height: 10,
+                width: 10,
+                child: CircularProgressIndicator(),
               );
-            },
+              }else if(snapshot.hasData) {
+                List<Movie> movies = snapshot.data as List<Movie>;
+
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: movies.length,
+                  itemBuilder: (context, item) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return MovieDetails(movie: movies[item]);
+                        },),);
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(8),
+                        height: 250,
+                        width: 180,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Image.network(
+                          '${Constants.IMGURL}${movies[item].posterPath}',
+                          fit: BoxFit.fill,),
+                      ),
+                    );
+                  },
+                );
+              }else {
+                return Text("Unable to fetch data ${snapshot.error}");
+              }
+            }
           ),
         ),
       ],

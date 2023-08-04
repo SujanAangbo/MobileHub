@@ -12,13 +12,13 @@ class Movie {
       required this.releaseDate,
       required this.rating});
 
-  factory Movie.fromJson(Map<String, dynamic> json) {
-    return Movie(
-      title: json['title'],
-      posterPath: json['poster_path'],
-      description: json['overview'],
-      releaseDate: json['release_date'],
-      rating: json['vote_average'],
-    );
-  }
+  // factory Movie.fromJson(Map<String, dynamic> json) {
+  //   return Movie(
+  //     title: json['title'],
+  //     posterPath: json['poster_path'],
+  //     description: json['overview'],
+  //     releaseDate: json['release_date'],
+  //     rating: json['vote_average'],
+  //   );
+  // }
 }

@@ -34,50 +34,51 @@ class _TrendingSliderWidgetState extends State<TrendingSliderWidget> {
         FutureBuilder<List<Movie>>(
           future: widget.movieList,
           builder: (context, snapshot) {
-            List<Movie> movies;
             if (snapshot.connectionState == ConnectionState.waiting) {
               return CircularProgressIndicator();
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
               // Data has been fetched successfully
-              movies = snapshot.data!;
+              List<Movie> movies = snapshot.data!;
+
+              return CarouselSlider.builder(
+                itemCount: movies.length,
+                options: CarouselOptions(
+                  viewportFraction: 0.6,
+                  height: 300,
+                  enableInfiniteScroll: true,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlayAnimationDuration: const Duration(seconds: 1),
+                  enlargeCenterPage: true,
+                ),
+                itemBuilder: (context, itemIndex, pageViewIndex) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MovieDetails(movie: movies[itemIndex],)),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        // color: Colors.blue,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      height: 300,
+                      width: 250,
+                      child: Image.network(
+                        "${Constants.IMGURL}${movies[itemIndex].posterPath}",
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  );
+                },
+              );
+
             }
 
-            return CarouselSlider.builder(
-              itemCount: movies.length,
-              options: CarouselOptions(
-                viewportFraction: 0.6,
-                height: 300,
-                enableInfiniteScroll: true,
-                autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 3),
-                autoPlayAnimationDuration: const Duration(seconds: 1),
-                enlargeCenterPage: true,
-              ),
-              itemBuilder: (context, itemIndex, pageViewIndex) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MovieDetails()),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      // color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    height: 300,
-                    width: 250,
-                    child: Image.network(
-                      "https://image.tmdb.org/t/p/w185${movies[itemIndex].posterPath}",
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                );
-              },
-            );
           },
         ),
       ],
