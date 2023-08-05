@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_hub/model/movie.dart';
 import 'package:movie_hub/screens/movie_details.dart';
+import 'package:movie_hub/widgets/movie_container.dart';
 import '../constants.dart';
 
 class TrendingSliderWidget extends StatefulWidget {
@@ -54,31 +55,21 @@ class _TrendingSliderWidgetState extends State<TrendingSliderWidget> {
                   enlargeCenterPage: true,
                 ),
                 itemBuilder: (context, itemIndex, pageViewIndex) {
-                  return GestureDetector(
+                  return MovieContainer(
+                    movie: movies[itemIndex],
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MovieDetails(movie: movies[itemIndex],)),
+                        MaterialPageRoute(
+                            builder: (context) => MovieDetails(
+                                  movie: movies[itemIndex],
+                                )),
                       );
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        // color: Colors.blue,
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      height: 300,
-                      width: 250,
-                      child: Image.network(
-                        "${Constants.IMGURL}${movies[itemIndex].posterPath}",
-                        fit: BoxFit.fill,
-                      ),
-                    ),
                   );
                 },
               );
-
             }
-
           },
         ),
       ],

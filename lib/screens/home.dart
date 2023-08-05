@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SearchBarWidget(searchFocus: searchFocus, searchBoxTextController: searchBoxTextController),
-            SizedBox(
+            const SizedBox(
               height: 8.0,
             ),
             TrendingSliderWidget(

@@ -18,8 +18,8 @@ class _MyAppState extends State<MyApp> {
   int bottomNavigationIndex = 0;
   ScrollController scrollController = ScrollController();
 
-  List<Widget> _pages = [
-    Home(),
+  final List<Widget> _pages = [
+    const Home(),
     Favourite(),
   ];
 

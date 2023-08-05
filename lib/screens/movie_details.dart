@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_hub/constants.dart';
+import 'package:movie_hub/widgets/divide_element.dart';
 import 'package:movie_hub/widgets/icon_widget.dart';
 import 'package:movie_hub/widgets/show_movies_properties.dart';
 import '../model/movie.dart';
@@ -51,11 +52,17 @@ class MovieDetails extends StatelessWidget {
             // Contents of Expandable/Flexible area
             flexibleSpace: Container(
               margin: const EdgeInsets.only(top: 50),
-              child: Image.network(
-                "${Constants.IMGURL}${movie.posterPath}",
-                fit: BoxFit.cover,
-                filterQuality: FilterQuality.high,
-              ),
+              child: movie.posterPath.isEmpty
+                  ? Image.asset(
+                      "assets/images/no_image.png",
+                      fit: BoxFit.cover,
+                      filterQuality: FilterQuality.high,
+                    )
+                  : Image.network(
+                      "${Constants.IMGURL}${movie.posterPath}",
+                      fit: BoxFit.cover,
+                      filterQuality: FilterQuality.high,
+                    ),
             ),
 
             // Content of bottom part of AppBar(to show movie name with light black bg)
@@ -94,8 +101,14 @@ class MovieDetails extends StatelessWidget {
                       movie.description,
                       style: Constants.kDescriptionText,
                     ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     ShowMovieProperties(
                         heading: "Release Date", data: movie.releaseDate),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     ShowMovieProperties(
                       heading: "Rating",
                       data: "${movie.rating.toStringAsFixed(1)}/10",
