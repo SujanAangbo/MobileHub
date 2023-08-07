@@ -16,18 +16,22 @@ class Api {
 
     if (response.statusCode == 200) {
       final decode = jsonDecode(response.body)['results'] as List;
+      print(decode);
 
       List<Movie> movieList = [];
 
       for (int i = 0; i < decode.length; i++) {
+        int id = decode[i]['id'];
+        bool isBookmark = decode[i]['is_bookmark'];
         String title = decode[i]['title'];
         String posterPath = decode[i]['poster_path'] ?? "";
         String description = decode[i]['overview'];
         String releaseDate = decode[i]['release_date'];
         double rating = decode[i]['vote_average'].toDouble();
 
-        print('$title');
         movieList.add(Movie(
+          id: id,
+            isBookmark: isBookmark,
             title: title,
             posterPath: posterPath,
             description: description,
@@ -48,9 +52,11 @@ class Api {
     if (response.statusCode == 200) {
       final decode = jsonDecode(response.body)['results'] as List;
 
+      print("trending movies \n${decode.toString()}");
       List<Movie> movieList = [];
 
       for (int i = 0; i < decode.length; i++) {
+        int id = decode[i]['id'];
         String title = decode[i]['title'];
         String posterPath = decode[i]['poster_path'];
         String description = decode[i]['overview'];
@@ -58,6 +64,8 @@ class Api {
         double rating = decode[i]['vote_average'].toDouble();
 
         movieList.add(Movie(
+          id: id,
+            isBookmark: false,
             title: title,
             posterPath: posterPath,
             description: description,
@@ -81,6 +89,7 @@ class Api {
       List<Movie> movieList = [];
 
       for (int i = 0; i < decode.length; i++) {
+        int id = decode[i]['id'];
         String title = decode[i]['title'];
         String posterPath = decode[i]['poster_path'];
         String description = decode[i]['overview'];
@@ -88,6 +97,8 @@ class Api {
         double rating = decode[i]['vote_average'].toDouble();
 
         movieList.add(Movie(
+          id: id,
+            isBookmark: false,
             title: title,
             posterPath: posterPath,
             description: description,
@@ -111,6 +122,7 @@ class Api {
       List<Movie> movieList = [];
 
       for (int i = 0; i < decode.length; i++) {
+        int id = decode[i]['id'];
         String title = decode[i]['title'];
         String posterPath = decode[i]['poster_path'];
         String description = decode[i]['overview'];
@@ -118,6 +130,8 @@ class Api {
         double rating = decode[i]['vote_average'].toDouble();
 
         movieList.add(Movie(
+          id: id,
+            isBookmark: false,
             title: title,
             posterPath: posterPath,
             description: description,

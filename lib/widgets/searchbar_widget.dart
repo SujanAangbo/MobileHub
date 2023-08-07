@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:movie_hub/screens/search_results.dart';
 
 import '../constants.dart';
@@ -37,50 +36,6 @@ class SearchBarWidget extends StatelessWidget {
       textInputAction: TextInputAction.search,
       onSubmitted: (keyword) {
         if (keyword.isNotEmpty) {
-          List<Movie> list = [
-            Movie(
-                title: "Oppenhymer",
-                posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-                description: "lfkjsdfjslkdjl;kajsdf;jsd",
-                releaseDate: "2050-6-5",
-                rating: 5.6),
-            Movie(
-                title: "Oppenhymer",
-                posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-                description: "lfkjsdfjslkdjl;kajsdf;jsd",
-                releaseDate: "2050-6-5",
-                rating: 5.6),
-            Movie(
-                title: "Oppenhymer",
-                posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-                description: "lfkjsdfjslkdjl;kajsdf;jsd",
-                releaseDate: "2050-6-5",
-                rating: 5.6),
-            Movie(
-                title: "Oppenhymer",
-                posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-                description: "lfkjsdfjslkdjl;kajsdf;jsd",
-                releaseDate: "2050-6-5",
-                rating: 5.6),
-            Movie(
-                title: "Oppenhymer",
-                posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-                description: "lfkjsdfjslkdjl;kajsdf;jsd",
-                releaseDate: "2050-6-5",
-                rating: 5.6),
-            Movie(
-                title: "Oppenhymer",
-                posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-                description: "lfkjsdfjslkdjl;kajsdf;jsd",
-                releaseDate: "2050-6-5",
-                rating: 5.6),
-            Movie(
-                title: "Oppenhymer",
-                posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-                description: "lfkjsdfjslkdjl;kajsdf;jsd",
-                releaseDate: "2050-6-5",
-                rating: 5.6),
-          ];
 
           Future<List<Movie>> searchedMovie = Api().searchMovie(keyword);
 
@@ -100,3 +55,48 @@ class SearchBarWidget extends StatelessWidget {
     );
   }
 }
+
+//          List<Movie> list = [
+//             Movie(
+//                 title: "Oppenhymer",
+//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
+//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
+//                 releaseDate: "2050-6-5",
+//                 rating: 5.6),
+//             Movie(
+//                 title: "Oppenhymer",
+//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
+//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
+//                 releaseDate: "2050-6-5",
+//                 rating: 5.6),
+//             Movie(
+//                 title: "Oppenhymer",
+//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
+//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
+//                 releaseDate: "2050-6-5",
+//                 rating: 5.6),
+//             Movie(
+//                 title: "Oppenhymer",
+//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
+//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
+//                 releaseDate: "2050-6-5",
+//                 rating: 5.6),
+//             Movie(
+//                 title: "Oppenhymer",
+//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
+//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
+//                 releaseDate: "2050-6-5",
+//                 rating: 5.6),
+//             Movie(
+//                 title: "Oppenhymer",
+//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
+//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
+//                 releaseDate: "2050-6-5",
+//                 rating: 5.6),
+//             Movie(
+//                 title: "Oppenhymer",
+//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
+//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
+//                 releaseDate: "2050-6-5",
+//                 rating: 5.6),
+//           ];

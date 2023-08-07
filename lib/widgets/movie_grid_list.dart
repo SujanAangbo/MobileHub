@@ -14,17 +14,18 @@ class MovieGridList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, mainAxisSpacing: 8, crossAxisSpacing: 8),
-      itemCount: movies!.length,
+      itemCount: movies.length,
       itemBuilder: (context, item) {
         return MovieContainer(
-          movie: movies![item],
+          movie: movies[item],
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => MovieDetails(movie: movies![item]),
+                builder: (context) => MovieDetails(movie: movies[item]),
               ),
             );
           },
