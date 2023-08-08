@@ -27,7 +27,7 @@ class _TrendingSliderWidgetState extends State<TrendingSliderWidget> {
         const SizedBox(
           height: 16,
         ),
-        Divider(
+        const Divider(
           height: 10,
           thickness: 2,
           color: Colors.grey,
@@ -36,18 +36,20 @@ class _TrendingSliderWidgetState extends State<TrendingSliderWidget> {
           future: widget.movieList,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else {
+              return const Center(
+                child: SizedBox(
+                    height: 100, width: 100, child: CircularProgressIndicator()),
+              );
+            } else if (snapshot.hasData) {
               // Data has been fetched successfully
               List<Movie> movies = snapshot.data!;
 
               return CarouselSlider.builder(
                 itemCount: movies.length,
                 options: CarouselOptions(
+
                   viewportFraction: 0.6,
-                  height: 300,
+                  height: 320,
                   enableInfiniteScroll: true,
                   autoPlay: true,
                   autoPlayInterval: const Duration(seconds: 3),
@@ -61,14 +63,17 @@ class _TrendingSliderWidgetState extends State<TrendingSliderWidget> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MovieDetails(
-                                  movie: movies[itemIndex],
-                                )),
+                          builder: (context) => MovieDetails(
+                            movie: movies[itemIndex],
+                          ),
+                        ),
                       );
                     },
                   );
                 },
               );
+            } else {
+              return Text('Error: ${snapshot.error}');
             }
           },
         ),

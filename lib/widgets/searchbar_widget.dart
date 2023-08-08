@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_hub/screens/search_results.dart';
-
 import '../constants.dart';
 import '../model/movie.dart';
 import '../network_service/api.dart';
@@ -36,9 +35,7 @@ class SearchBarWidget extends StatelessWidget {
       textInputAction: TextInputAction.search,
       onSubmitted: (keyword) {
         if (keyword.isNotEmpty) {
-
           Future<List<Movie>> searchedMovie = Api().searchMovie(keyword);
-
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -47,56 +44,8 @@ class SearchBarWidget extends StatelessWidget {
               ),
             ),
           );
-
         }
       },
-
-      // trailing:
     );
   }
 }
-
-//          List<Movie> list = [
-//             Movie(
-//                 title: "Oppenhymer",
-//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
-//                 releaseDate: "2050-6-5",
-//                 rating: 5.6),
-//             Movie(
-//                 title: "Oppenhymer",
-//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
-//                 releaseDate: "2050-6-5",
-//                 rating: 5.6),
-//             Movie(
-//                 title: "Oppenhymer",
-//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
-//                 releaseDate: "2050-6-5",
-//                 rating: 5.6),
-//             Movie(
-//                 title: "Oppenhymer",
-//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
-//                 releaseDate: "2050-6-5",
-//                 rating: 5.6),
-//             Movie(
-//                 title: "Oppenhymer",
-//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
-//                 releaseDate: "2050-6-5",
-//                 rating: 5.6),
-//             Movie(
-//                 title: "Oppenhymer",
-//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
-//                 releaseDate: "2050-6-5",
-//                 rating: 5.6),
-//             Movie(
-//                 title: "Oppenhymer",
-//                 posterPath: "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
-//                 description: "lfkjsdfjslkdjl;kajsdf;jsd",
-//                 releaseDate: "2050-6-5",
-//                 rating: 5.6),
-//           ];

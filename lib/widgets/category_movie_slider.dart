@@ -47,7 +47,10 @@ class _MovieCategorySliderState extends State<MovieCategorySlider> {
                   return const SizedBox(
                     height: 10,
                     width: 10,
-                    child: CircularProgressIndicator(),
+                    child: Center(
+                      child: SizedBox(
+                          height: 100, width: 100, child: CircularProgressIndicator()),
+                    ),
                   );
                 } else if (snapshot.hasData) {
                   List<Movie> movies = snapshot.data as List<Movie>;
@@ -72,7 +75,7 @@ class _MovieCategorySliderState extends State<MovieCategorySlider> {
                     },
                   );
                 } else {
-                  return Text("Unable to fetch data ${snapshot.error}");
+                  return Text("Unable to fetch data. ${snapshot.error}");
                 }
               }),
         ),

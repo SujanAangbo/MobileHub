@@ -8,7 +8,6 @@ class MovieFunction {
       Map<String, dynamic> movie = {
         "id": movies[i].id,
         "title": movies[i].title,
-        "is_bookmark": movies[i].isBookmark,
         "poster_path": movies[i].posterPath,
         "overview": movies[i].description,
         "release_date": movies[i].releaseDate,
@@ -16,9 +15,6 @@ class MovieFunction {
       };
       map.add(movie);
     }
-
-    print('Object to Map \n$map');
-
     return map;
   }
 
@@ -27,7 +23,6 @@ class MovieFunction {
     for (int i = 0; i < map.length; i++) {
       Movie movie = Movie(
         id: map[i]['id'],
-          isBookmark: map[i]['is_bookmark'],
           title: map[i]['title'],
           posterPath: map[i]['poster_path'],
           description: map[i]['overview'],
@@ -36,8 +31,6 @@ class MovieFunction {
 
       movies.add(movie);
     }
-    print("output \n$movies");
-
     return movies;
   }
 

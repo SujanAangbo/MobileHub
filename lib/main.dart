@@ -14,7 +14,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   int bottomNavigationIndex = 0;
   ScrollController scrollController = ScrollController();
 
@@ -46,12 +45,6 @@ class _MyAppState extends State<MyApp> {
         primaryColor: Colors.teal,
       ),
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: const Text(
-        //     "Movie Hub",
-        //     style: kTitleText,
-        //   ),
-        // ),
         body: SafeArea(
           child: SingleChildScrollView(
             controller: scrollController,
@@ -70,14 +63,9 @@ class _MyAppState extends State<MyApp> {
               icon: Icon(Icons.bookmark),
               label: "Favourite",
             ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.home),
-            //   label: "Home",
-            // ),
           ],
         ),
       ),
-      // home: MovieDetails(),
     );
   }
 }

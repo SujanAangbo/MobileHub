@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class IconWidget extends StatelessWidget {
-  IconWidget({Key? key, required this.icon, required this.onPressed}) : super(key: key);
+  const IconWidget({Key? key, required this.icon, required this.onPressed}) : super(key: key);
 
-  IconData icon;
-  Function() onPressed;
+  final IconData icon;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {

@@ -14,7 +14,7 @@ class Constants {
   );
 
   static const TextStyle kDescriptionText = TextStyle(
-      fontSize: 22,
+      fontSize: 18,
       fontFamily: "lightLato"
   );
 }

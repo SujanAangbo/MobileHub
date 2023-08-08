@@ -4,25 +4,27 @@ import 'package:movie_hub/model/movie.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
-  String trendingUrl = '${Constants.HEADING}trending/movie/week?api_key=${Constants.APIKEY}';
-  String topRatedUrl = '${Constants.HEADING}movie/top_rated?api_key=${Constants.APIKEY}';
-  String upcomingUrl = '${Constants.HEADING}movie/upcoming?api_key=${Constants.APIKEY}';
+  String trendingUrl =
+      '${Constants.HEADING}trending/movie/week?api_key=${Constants.APIKEY}';
+  String topRatedUrl =
+      '${Constants.HEADING}movie/top_rated?api_key=${Constants.APIKEY}';
+  String upcomingUrl =
+      '${Constants.HEADING}movie/upcoming?api_key=${Constants.APIKEY}';
 
   Future<List<Movie>> searchMovie(String keyword) async {
+    // Url:
     // https://api.themoviedb.org/3/search/movie?query=talk%20to%20me&api_key=04b0909f6feaddcbe52c810675afba3f
-    String searchUrl = '${Constants.HEADING}search/movie?query=$keyword&api_key=${Constants.APIKEY}';
 
+    String searchUrl =
+        '${Constants.HEADING}search/movie?query=$keyword&api_key=${Constants.APIKEY}';
     final response = await http.get(Uri.parse(searchUrl));
 
     if (response.statusCode == 200) {
       final decode = jsonDecode(response.body)['results'] as List;
-      print(decode);
-
       List<Movie> movieList = [];
 
       for (int i = 0; i < decode.length; i++) {
         int id = decode[i]['id'];
-        bool isBookmark = decode[i]['is_bookmark'];
         String title = decode[i]['title'];
         String posterPath = decode[i]['poster_path'] ?? "";
         String description = decode[i]['overview'];
@@ -30,8 +32,7 @@ class Api {
         double rating = decode[i]['vote_average'].toDouble();
 
         movieList.add(Movie(
-          id: id,
-            isBookmark: isBookmark,
+            id: id,
             title: title,
             posterPath: posterPath,
             description: description,
@@ -40,7 +41,6 @@ class Api {
       }
 
       return movieList;
-
     } else {
       throw ("Network Error");
     }
@@ -48,11 +48,8 @@ class Api {
 
   Future<List<Movie>> getTrendingMovies() async {
     final response = await http.get(Uri.parse(trendingUrl));
-
     if (response.statusCode == 200) {
       final decode = jsonDecode(response.body)['results'] as List;
-
-      print("trending movies \n${decode.toString()}");
       List<Movie> movieList = [];
 
       for (int i = 0; i < decode.length; i++) {
@@ -64,8 +61,7 @@ class Api {
         double rating = decode[i]['vote_average'].toDouble();
 
         movieList.add(Movie(
-          id: id,
-            isBookmark: false,
+            id: id,
             title: title,
             posterPath: posterPath,
             description: description,
@@ -74,7 +70,6 @@ class Api {
       }
 
       return movieList;
-
     } else {
       throw ("Network Error");
     }
@@ -82,10 +77,8 @@ class Api {
 
   Future<List<Movie>> getTopRatedMovies() async {
     final response = await http.get(Uri.parse(topRatedUrl));
-
     if (response.statusCode == 200) {
       final decode = jsonDecode(response.body)['results'] as List;
-
       List<Movie> movieList = [];
 
       for (int i = 0; i < decode.length; i++) {
@@ -97,8 +90,7 @@ class Api {
         double rating = decode[i]['vote_average'].toDouble();
 
         movieList.add(Movie(
-          id: id,
-            isBookmark: false,
+            id: id,
             title: title,
             posterPath: posterPath,
             description: description,
@@ -107,7 +99,6 @@ class Api {
       }
 
       return movieList;
-
     } else {
       throw ("Network Error");
     }
@@ -118,7 +109,6 @@ class Api {
 
     if (response.statusCode == 200) {
       final decode = jsonDecode(response.body)['results'] as List;
-
       List<Movie> movieList = [];
 
       for (int i = 0; i < decode.length; i++) {
@@ -130,8 +120,7 @@ class Api {
         double rating = decode[i]['vote_average'].toDouble();
 
         movieList.add(Movie(
-          id: id,
-            isBookmark: false,
+            id: id,
             title: title,
             posterPath: posterPath,
             description: description,
@@ -140,7 +129,6 @@ class Api {
       }
 
       return movieList;
-
     } else {
       throw ("Network Error");
     }
